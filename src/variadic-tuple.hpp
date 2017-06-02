@@ -26,8 +26,7 @@ struct tuple<ID, T,  Ts...> : tuple<Ts...> {
 
   tuple() : tuple<Ts...>(), tail(typeFromID(ID{})){}
 
-  //decltype(typeFromID(ID{})) tail;
-  T tail;
+  decltype(typeFromID(ID{})) tail;
   static constexpr size_t id{ID::value};
 };
 
