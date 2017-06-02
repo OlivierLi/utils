@@ -6,11 +6,12 @@
 
 
 int main(int, char**){
+    std::cout << "Value: " << typeFromID(num<9>{}) << std::endl;
   //---------------------------------------------------------------------------
     
   //TODO : To avoid having to list everything twice : Implement something like std::make_tuple?
   using tuple_t = tuple<num<7>, double, num<8>, uint64_t, num<9>, const char*>;
-  tuple_t t1(num<7>(), 12.2, num<8>(), 42, num<9>(), "big");
+  tuple_t t1;
 
   std::cout << "Elem with ID 7 is: " << get<7>(t1) << "\n";
   std::cout << "Elem with ID 8 is: " << get<8>(t1) << "\n";

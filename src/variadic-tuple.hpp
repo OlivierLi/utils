@@ -5,17 +5,17 @@ template<size_t N>
 using num = std::integral_constant<size_t, N>;
 
 auto typeFromID(num<7>){
-    double ret{0.0};
+    double ret{17.0};
     return ret;
 }
 
 auto typeFromID(num<8>){
-    uint64_t ret{0};
+    uint64_t ret{19};
     return ret;
 }
 
 auto typeFromID(num<9>){
-    const char* ret{nullptr};
+    const char* ret{"A"};
     return ret;
 }
 
@@ -24,7 +24,7 @@ template <typename... Ts> struct tuple {};
 template <typename ID , typename T, typename... Ts>
 struct tuple<ID, T,  Ts...> : tuple<Ts...> {
 
-  tuple(ID, T t, Ts... ts) : tuple<Ts...>(ts...), tail(t){}
+  tuple() : tuple<Ts...>(), tail(typeFromID(ID{})){}
 
   //decltype(typeFromID(ID{})) tail;
   T tail;
