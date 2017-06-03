@@ -4,21 +4,17 @@
 #include "constexpr_array.hpp"
 #include "variadic-tuple.hpp"
 
-
 int main(int, char**){
-    std::cout << "Value: " << typeFromID(num<9>{}) << std::endl;
-  //---------------------------------------------------------------------------
-    
-  //TODO : To avoid having to list everything twice : Implement something like std::make_tuple?
-  using tuple_t = tuple<num<7>, double, num<8>, uint64_t, num<9>, const char*>;
+
+  using tuple_t = tuple<ID::MessageType, ID::Side, ID::ExecInst>;
   tuple_t t1;
 
-  std::cout << "Elem with ID 7 is: " << get<7>(t1) << "\n";
-  std::cout << "Elem with ID 8 is: " << get<8>(t1) << "\n";
-  std::cout << "Elem with ID 9 is: " << get<9>(t1) << "\n";
+  std::cout << "Elem with ID " << ID::MessageType<< " is: " << get<ID::MessageType>(t1) << "\n";
+  std::cout << "Elem with ID " << ID::Side<< " is: " << get<ID::Side>(t1) << "\n";
+  std::cout << "Elem with ID " << ID::ExecInst<< " is: " << get<ID::ExecInst>(t1) << "\n";
 
-  get<7>(t1) = 103;
-  std::cout << "Elem with ID 7 is: " << get<7>(t1) << "\n";
+  get<ID::MessageType>(t1) = '0';
+  std::cout << "Elem with ID " << ID::MessageType<< " is: " << get<ID::MessageType>(t1) << "\n";
 
   return 0;
 }
