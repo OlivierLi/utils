@@ -5,6 +5,7 @@
 #include "variadic-tuple.hpp"
 
 int main(int, char**){
+  // TODO: Create other static assert tests (to detect regressions)
 
   using tuple_t = tuple<ID::MessageType, ID::Side, ID::ExecInst>;
   tuple_t t1;

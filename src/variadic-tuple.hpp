@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <iostream>
+#include "utils.hpp"
 
 namespace ID{
     constexpr size_t MessageType{35};
@@ -49,9 +50,8 @@ auto& get(tuple<IDs...>& t) {
 
 template <size_t ID, size_t I, size_t... IDs, typename std::enable_if_t<!is_right<ID, I, IDs...>(), std::nullptr_t> = nullptr>
 auto& get(tuple<I, IDs...>& t) {
-
-  //TODO : Static assert to verify the the ID we are using is actually usable
-  //stackoverflow.com/questions/29603364/type-trait-to-check-that-all-types-in-a-parameter-pack-are-copy-constructible
+  
+  static_assert(has_int<ID, I, IDs...>(), "ID not in tuple!");
 
   tuple<IDs...>& base = t;
   return get<ID>(base);
