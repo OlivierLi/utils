@@ -3,18 +3,23 @@
 #include "type_print.hpp"
 #include "constexpr_array.hpp"
 #include "variadic-tuple.hpp"
+#include "string_templating.hpp"
 
 int main(int, char**){
+    constexpr const char* valid = "{}{}{}{}";
+    constexpr const char* invalid = "{}}{}{}";
+    constexpr const char* empty = "";
 
-  using tuple_t = tuple<ID::MessageType, ID::Side, ID::ExecInst>;
-  tuple_t t1;
+    static_assert(len(valid) == 8, "Len not working");
+    static_assert(len(invalid) == 7, "Len not working");
+    static_assert(len(nullptr) == 0, "Len not working");
+    static_assert(len(empty) == 0, "Len not working");
 
-  std::cout << "Elem with ID " << ID::MessageType<< " is: " << get<ID::MessageType>(t1) << "\n";
-  std::cout << "Elem with ID " << ID::Side<< " is: " << get<ID::Side>(t1) << "\n";
-  std::cout << "Elem with ID " << ID::ExecInst<< " is: " << get<ID::ExecInst>(t1) << "\n";
+    static_assert(is_valid(valid), "Template is valid");
+    static_assert(!is_valid(invalid), "Template is valid");
 
-  get<ID::MessageType>(t1) = '0';
-  std::cout << "Elem with ID " << ID::MessageType<< " is: " << get<ID::MessageType>(t1) << "\n";
+    static_assert(char_to_num('0') == 0, "Bad char/num conversion");
+    static_assert(char_to_num('9') == 9, "Bad char/num conversion");
 
-  return 0;
+    return 0;
 }

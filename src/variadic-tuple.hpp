@@ -30,10 +30,10 @@ template <size_t... IDs> struct tuple {};
 template <size_t ID , size_t... IDs>
 struct tuple<ID, IDs...> : tuple<IDs...> {
 
-  tuple() : tuple<IDs...>(), tail(typeFromID(num<ID>{})){}
+    tuple() : tuple<IDs...>(), tail(typeFromID(num<ID>{})){}
 
-  decltype(typeFromID(num<ID>{})) tail;
-  static constexpr size_t id{ID};
+    decltype(typeFromID(num<ID>{})) tail;
+    static constexpr size_t id{ID};
 };
 
 template <size_t ID, size_t... IDs>
@@ -44,16 +44,16 @@ constexpr bool is_right(){
 
 template <size_t ID, size_t... IDs, typename std::enable_if_t<is_right<ID, IDs...>(), std::nullptr_t> = nullptr>
 auto& get(tuple<IDs...>& t) {
-  return t.tail;
+    return t.tail;
 }
 
 template <size_t ID, size_t I, size_t... IDs, typename std::enable_if_t<!is_right<ID, I, IDs...>(), std::nullptr_t> = nullptr>
 auto& get(tuple<I, IDs...>& t) {
 
-  //TODO : Static assert to verify the the ID we are using is actually usable
-  //stackoverflow.com/questions/29603364/type-trait-to-check-that-all-types-in-a-parameter-pack-are-copy-constructible
+    //TODO : Static assert to verify the the ID we are using is actually usable
+    //stackoverflow.com/questions/29603364/type-trait-to-check-that-all-types-in-a-parameter-pack-are-copy-constructible
 
-  tuple<IDs...>& base = t;
-  return get<ID>(base);
+    tuple<IDs...>& base = t;
+    return get<ID>(base);
 }
 
