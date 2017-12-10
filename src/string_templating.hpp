@@ -42,3 +42,20 @@ constexpr std::uint8_t char_to_num(char c){
     }
     return static_cast<std::uint8_t>(c)-48;
 }
+
+void test_template(){
+    constexpr const char* valid = "{}{}{}{}";
+    constexpr const char* invalid = "{}}{}{}";
+    constexpr const char* empty = "";
+
+    static_assert(len(valid) == 8, "Len not working");
+    static_assert(len(invalid) == 7, "Len not working");
+    static_assert(len(nullptr) == 0, "Len not working");
+    static_assert(len(empty) == 0, "Len not working");
+
+    static_assert(is_valid(valid), "Template is valid");
+    static_assert(!is_valid(invalid), "Template is valid");
+
+    static_assert(char_to_num('0') == 0, "Bad char/num conversion");
+    static_assert(char_to_num('9') == 9, "Bad char/num conversion");
+}
