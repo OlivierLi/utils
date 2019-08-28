@@ -48,6 +48,8 @@ auto& get(tuple<IDs...>& t) {
     return t.tail;
 }
 
+// TODO : Rename ID to something better. It's the ID we are looking for. Could be better called TARGET, RHS or value?.
+// TODO : Rename I to something better. It's the sliced off first ID. Could be better called ID
 template <size_t ID, size_t I, size_t... IDs, typename std::enable_if_t<!is_right<ID, I, IDs...>(), std::nullptr_t> = nullptr>
 auto& get(tuple<I, IDs...>& t) {
     static_assert(has_int<ID, I, IDs...>(), "ID not in tuple!");
