@@ -1,13 +1,23 @@
-#include <iostream>
 #include <iomanip>
-#include "is_in.hpp"
-#include "type_print.hpp"
-#include "constexpr_array.hpp"
-#include "variadic-tuple.hpp"
-#include "string_templating.hpp"
-#include "nlz.hpp"
+#include <iostream>
+#include <thread>
 
-int main(int, char**){
-    test_nlz();
-    return 0;
+#include "constexpr_array.hpp"
+#include "is_in.hpp"
+#include "nlz.hpp"
+#include "string_templating.hpp"
+#include "type_print.hpp"
+#include "variadic-tuple.hpp"
+#include "scoped_signal.hpp"
+
+namespace{
+  SignalTimer signal_timer;
+} // namespace
+
+
+int main(int, char**) {
+  ScopedSignalTrigger trigger(&signal_timer);
+
+
+  return 0;
 }
