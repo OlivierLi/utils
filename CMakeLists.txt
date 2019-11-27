@@ -10,4 +10,5 @@ SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 file(GLOB_RECURSE SRC "src" "src/*.cpp")
 
 add_executable(utils ${SRC})
-target_link_libraries(utils)
+#rt for signals and timers.
+target_link_libraries(utils rt)
