@@ -1,5 +1,5 @@
-CMAKE_MINIMUM_REQUIRED(version 3.1)
-PROJECT(interceptor)
+cmake_minimum_required(VERSION 2.8)
+project(interceptor)
 
 SET(THREADS_PREFER_PTHREAD_FLAG ON)
 SET(CMAKE_CXX_COMPILER clang++)
@@ -12,8 +12,7 @@ FIND_PACKAGE(Threads REQUIRED)
 #Find all cpp files recursively
 FILE(GLOB_RECURSE SRC "src" "src/*.cpp")
 
-ADD_EXECUTABLE(UTILS ${SRC})
-
+add_executable(utils ${SRC})
 #rt for signals and timers.
 TARGET_LINK_LIBRARIES(utils rt)
 
