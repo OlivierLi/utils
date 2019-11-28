@@ -21,6 +21,7 @@ SignalTimer signal_timer(SIGKILL, 500ms);
 
 int main(int, char**) {
   ScopedSignalTrigger trigger(&signal_timer);
+
   std::this_thread::sleep_for(1s);
 
   return 0;

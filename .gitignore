@@ -27,3 +27,18 @@
 *.exe
 *.out
 *.app
+
+# Vim files
+*.swp
+.clangd
+
+# Binary itself
+utils
+
+# Cmake stuff
+compile_commands.json
+cmake_*
+CMake*
+Makefile
+
+
